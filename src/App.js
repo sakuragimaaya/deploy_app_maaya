@@ -1,35 +1,29 @@
 import React, { useState } from 'react';
-import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { InputGroup, FormControl, Button } from 'react-bootstrap';
 
 function App() {
 
-  const [count, SetCount] = useState(0);
-
-  const increment = () => {
-    SetCount(count + 1)
-    console.log(count);
+  const [text, setText] = useState('');
+  const [value, setValue] = useState('');
+  const handleClick = () => {
+    setValue(text)
   };
-
-  const downcrement = () => {
-    SetCount(count - 1)
-    console.log(count);
-  };
-
-  const resetcrement = () => {
-    SetCount(0)
-    console.log(count);
-  };
-
-
 
   return (
     <div>
-      <button onClick={increment}>いいね！</button>
-      <button onClick={downcrement}>よくないね！</button>
-      <button onClick={resetcrement}>reset</button>
-      {count}
-    </div>
-  );
-}
+      <InputGroup className="mb-3" >
+        <FormControl
+          aria-describedby="basic-addonZ"
+          defaultValue={value}
+          onClick={e => setText(e.target.value)}
+        />
+        <InputGroup.Append>
+          <Button variant="outlime-secondary" onClick={handleClick} >Button</Button>{value}
+        </InputGroup.Append>
+      </InputGroup>
+    </div >
+  )
+};
 
 export default App;
