@@ -8,7 +8,7 @@ function App() {
   const [value, setValue] = useState('');
   const handleClick = () => {
     setValue(text)
-  };
+  }
 
   return (
     <div>
@@ -16,7 +16,7 @@ function App() {
         <FormControl
           aria-describedby="basic-addonZ"
           defaultValue={value}
-          onClick={e => setText(e.target.value)}
+          onChange={e => setText(e.target.value)}
         />
         <InputGroup.Append>
           <Button variant="outlime-secondary" onClick={handleClick} >Button</Button>{value}
