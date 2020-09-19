@@ -6,9 +6,16 @@ function App() {
 
   const [text, setText] = useState('');
   const [value, setValue] = useState('');
+  const [error, setError] = useState("");
+
   const handleClick = () => {
+    if (text === "") {
+      setError("何か文字を入力して下さい")
+
+    }
     setValue(text)
   }
+  console.log(text, "chek")
 
   return (
     <div>
@@ -22,6 +29,7 @@ function App() {
           <Button variant="outlime-secondary" onClick={handleClick} >Button</Button>{value}
         </InputGroup.Append>
       </InputGroup>
+      <div color="CC0000">{error}</div>
     </div >
   )
 };
