@@ -1,23 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import axios from 'axios';
+import React from 'react';
+import './App.css';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Login from './pages/Login';
+import CreateUser from './pages/CreateUser';
+import Main from './pages/Main';
 
 function App() {
-
-  const [data, setData] = useState([])
-
-  useEffect(() => {
-    axios.get('https://qiita.com/api/v2/items')
-      .then(res => setData(res.data))
-  }, [])
-
   return (
-    <div>
-      {
-        data.map((d, index) => { return (<div key={index}>{d.title}</div>) })}
-    </div>
-  )
+    <Router>
+      <Switch>
+        <Route exact path="/" component={Login} />
+        <Route exact path="/createUser" component={CreateUser} />
+        <Route path="/main" component={Main} />
+      </Switch>
+    </Router>
+  );
 }
-
 
 export default App;
