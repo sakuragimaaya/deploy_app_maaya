@@ -7,8 +7,11 @@ import firebase from '../config/firebase'
 const CreateUser = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const history = useHistory()
 
-    const handleClick = () => {
+    const handClick = () => {
+        history.push('/login')
+
         firebase.auth().createUserWithEmailAndPassword(email, password)
             .then(() => {
                 console.log('success createUser')
@@ -26,7 +29,7 @@ const CreateUser = () => {
             <h2>CreateUser</h2>
             <TextField id="email" label="email" value={email} onChange={e => setEmail(e.target.value)} /><br />
             <TextField id="password" label="password" value={password} onChange={e => setPassword(e.target.value)} /><br />
-            <Button variant="outlined" onClick={handleClick}>Create</Button>
+            <Button variant="outlined" onClick={handClick}>Create</Button>
             <Link to='/' >戻る</Link>
         </div>
     );
