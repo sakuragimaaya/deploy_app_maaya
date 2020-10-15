@@ -14,16 +14,33 @@ var firebaseConfig = {
     appId: process.env.REACT_APP_APP_ID,
     measurementId: process.env.REACT_APP_MESSAGINGSENDER_ID,
 };
-// Initialize Firebase
+// Initialize Firebas,
 firebase.initializeApp(firebaseConfig);
-
 export const db = firebase.firestore();
+
+export const createMydata = async (first, last, born) => {
+
+    await db
+        .collection('users')
+        .add({
+            first: first,
+            last: last,
+            born: born,
+        })
+        .then(function (docRef) {
+            console.log('Document written with ID:', docRef.id);
+        })
+        .catch(function (error) {
+            console.error("Error adding document: ", error);
+        });
+};
+
 export const createData = async () => {
     await db
         .collection('users')
         .add({
-            first: 'Ada',
-            last: 'lovelace',
+            first: 'sakuragi',
+            last: 'maaya',
             born: 1825,
         })
         .then(function (docRef) {
@@ -32,7 +49,6 @@ export const createData = async () => {
         .catch(function (error) {
             console.error("Error adding document: ", error);
         });
-
 };
 
 export const readData = async () => {
@@ -63,8 +79,8 @@ export const updateData = async () => {
         .catch(function (error) {
             console.log('Error updating document:', error);
         });
-
 };
+
 export const deleteData = async () => {
     await db.collection('users').doc('Ys3AisOP1UpuCviGAzLS').delete()
         .then(function () {
