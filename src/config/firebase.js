@@ -15,20 +15,21 @@ var firebaseConfig = {
     measurementId: process.env.REACT_APP_MESSAGINGSENDER_ID,
 };
 // Initialize Firebas,
+
 firebase.initializeApp(firebaseConfig);
 export const db = firebase.firestore();
 
-export const createMydata = async (first, last, born) => {
-
+export const createMydata = async (id, first, last, born) => {
     await db
         .collection('users')
-        .add({
+        .doc(id)
+        .set({
             first: first,
             last: last,
             born: born,
         })
-        .then(function (docRef) {
-            console.log('Document written with ID:', docRef.id);
+        .then(function () {
+            console.log('Document succressfully updated!');
         })
         .catch(function (error) {
             console.error("Error adding document: ", error);

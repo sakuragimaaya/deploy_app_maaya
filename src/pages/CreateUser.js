@@ -5,22 +5,19 @@ import TextField from '@material-ui/core/TextField';
 import firebase from '../config/firebase'
 
 const CreateUser = () => {
+
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+
     const history = useHistory()
 
     const handClick = () => {
         history.push('/login')
-
         firebase.auth().createUserWithEmailAndPassword(email, password)
             .then(() => {
                 console.log('success createUser')
             })
             .catch(function (error) {
-                // Handle Errors here.
-                var errorCode = error.code;
-                var errorMessage = error.message;
-                // ...
             });
     }
 
